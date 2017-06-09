@@ -54,9 +54,7 @@ const constructCarts =
   listings =>
     customers => {
       const arr = customers.map(cust => {
-        const shopping = entries(cust.shoppingList).map((item) => { return itemRepeater(item[0])(item[1]) })
-
-        return { customer: cust.name, items: flatten(shopping) }
+        return { customer: cust.name, items: flatten(entries(cust.shoppingList).map((item) => { return itemRepeater(item[0])(item[1]) })) }
       })
 
       return arr
