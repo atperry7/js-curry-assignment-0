@@ -47,11 +47,9 @@ const constructCarts =
     customers => {
       const arr = customers.map(cust => {
         const shopping = shoppingListExpander(cust.shoppingList)
-        return cart(cust.name, shopping.map((item) => { return itemRepeater(item[0])(item[1]) }))
+      return { customer: cust.name, items: shopping.map((item) => { return itemRepeater(item[0])(item[1]) }) }
       })
 
-
-      console.log(arr)
       return arr
       // const test = [(customers[0].shoppingList)] // Destructs the Customer Shopping List into an array
     }
