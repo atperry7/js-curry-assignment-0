@@ -35,9 +35,6 @@ const listingsFilter =
     itemName =>
           listings.filter((list) => list.name === itemName)
 
-const shoppingListExpander =
-  shoppingList => entries(shoppingList)
-
 /**
  * should return an array of carts with each given customer's shopping list
  * as an array of items
@@ -46,7 +43,7 @@ const constructCarts =
   listings =>
     customers => {
       const arr = customers.map(cust => {
-        const shopping = shoppingListExpander(cust.shoppingList)
+        const shopping = entries(cust.shoppingList)
       return { customer: cust.name, items: shopping.map((item) => { return itemRepeater(item[0])(item[1]) }) }
       })
 
