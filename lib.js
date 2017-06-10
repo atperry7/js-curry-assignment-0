@@ -46,6 +46,11 @@ const id = x => x
 
 // flatten :: [[a]] -> [a]
 const flatten = concatMap(id)
+
+const shoppingListRepeater =
+  func =>
+    shoppingList => func(shoppingList).map((item) => itemRepeater(item[0])(item[1]))
+
 /**
  * should return an array of carts with each given customer's shopping list
  * as an array of items
@@ -54,7 +59,7 @@ const constructCarts =
   listings =>
     customers => {
       const arr = customers.map(cust => {
-        return { customer: cust.name, items: flatten(entries(cust.shoppingList).map((item) => { return itemRepeater(item[0])(item[1]) })) }
+        return { customer: cust.name, items: flatten(shoppingListRepeater(entries)(cust.shoppingList)) }
       })
 
       return arr
